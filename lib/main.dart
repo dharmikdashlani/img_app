@@ -34,8 +34,8 @@ class _PageState extends State<Page> with TickerProviderStateMixin {
     animationController.repeat();
   }
 
-  double a = 0;
-  double b = 10;
+  // double a = 0;
+  double action = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,14 @@ class _PageState extends State<Page> with TickerProviderStateMixin {
           Expanded(
             flex: 2,
             child: Slider(
-              onChangeStart: (value) => a,
-              onChangeEnd: (value) => b,
-              value: a,
+              // onChangeStart: (e) {e = a;},
+              // onChangeEnd: (value) => b,
+              min: 0,
+              max: 100,
+              value: action,
               onChanged: (val) {
                 setState(() {
+                  action = val;
                 });
               },
             ),
@@ -75,7 +78,7 @@ class _PageState extends State<Page> with TickerProviderStateMixin {
                       animation: animationController,
                       builder: (BuildContext context, widget) {
                         return Transform.rotate(
-                          angle: 0,
+                          angle: action,
                           child: widget,
                         );
                       },
